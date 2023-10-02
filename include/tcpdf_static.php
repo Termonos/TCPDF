@@ -298,10 +298,6 @@ class TCPDF_STATIC {
 	 * @public static
 	 */
 	public static function objclone($object) {
-		if (($object instanceof Imagick) AND (version_compare(phpversion('imagick'), '3.0.1') !== 1)) {
-			// on the versions after 3.0.1 the clone() method was deprecated in favour of clone keyword
-			return @$object->clone();
-		}
 		return @clone($object);
 	}
 
