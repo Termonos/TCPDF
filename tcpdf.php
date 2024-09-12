@@ -7355,7 +7355,8 @@ class TCPDF {
 			try {
 				// ImageMagick library
 				$img = new Imagick();
-				$img->readImage($file);
+				$contents = file_get_contents($file);
+				$img->readImageBlob($contents);
 				// clone image object
 				$imga = TCPDF_STATIC::objclone($img);
 				// extract alpha channel
