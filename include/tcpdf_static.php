@@ -1815,28 +1815,17 @@ class TCPDF_STATIC {
 	 * @since 6.2.25
 	 */
 	public static function url_exists($url) {
-		$crs = curl_init();
-		// encode query params in URL to get right response form the server
 		$url = self::encodeUrlQuery($url);
-		curl_setopt($crs, CURLOPT_URL, $url);
-		curl_setopt($crs, CURLOPT_NOBODY, true);
-		curl_setopt($crs, CURLOPT_FAILONERROR, true);
-		if ((ini_get('open_basedir') == '') && (!ini_get('safe_mode'))) {
-			curl_setopt($crs, CURLOPT_FOLLOWLOCATION, true);
+		$contents = @file_get_contents($url);
+		error_clear_last();
+
+		if ($contents === false) {
+			return false;
 		}
-		curl_setopt($crs, CURLOPT_CONNECTTIMEOUT, 5);
-		curl_setopt($crs, CURLOPT_TIMEOUT, 30);
-		curl_setopt($crs, CURLOPT_SSL_VERIFYPEER, false);
-		curl_setopt($crs, CURLOPT_SSL_VERIFYHOST, false);
-		curl_setopt($crs, CURLOPT_USERAGENT, 'tc-lib-file');
-		curl_setopt($crs, CURLOPT_MAXREDIRS, 5);
-		if (defined('CURLOPT_PROTOCOLS')) {
-		    curl_setopt($crs, CURLOPT_PROTOCOLS, CURLPROTO_HTTPS | CURLPROTO_HTTP |  CURLPROTO_FTP | CURLPROTO_FTPS);
-		}
-		curl_exec($crs);
-		$code = curl_getinfo($crs, CURLINFO_HTTP_CODE);
-		curl_close($crs);
-		return ($code == 200);
+
+		[, $code,] = explode(' ', $http_response_header[0]);
+
+		return ((int) $code == 200);
 	}
 
 	/**
