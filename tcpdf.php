@@ -2910,9 +2910,7 @@ class TCPDF {
 		$this->compress = false;
 		if (function_exists('gzcompress')) {
 			if ($compress) {
-				if ( !$this->pdfa_mode) {
-					$this->compress = true;
-				}
+                $this->compress = true;
 			}
 		}
 	}
@@ -5001,11 +4999,10 @@ class TCPDF {
 					$filter = '';
 					if ($this->compress) {
 						$data = gzcompress($data);
-						$filter = ' /Filter /FlateDecode';
+						$filter .= ' /Filter /FlateDecode';
 					}
-
 					if ($this->pdfa_version == 3) {
-						$filter = ' /Subtype /text#2Fxml';
+						$filter .= ' /Subtype /text#2Fxml';
 					}
 
 					$stream = $this->_getrawstream($data, $filedata['n']);
