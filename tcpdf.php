@@ -6925,8 +6925,8 @@ class TCPDF {
 			// fallback to avoid division by zero
 			$h = $h == 0 ? 1 : $h;
 			$ratio_wh = ($w / $h);
-			if (($y + $h) > $this->PageBreakTrigger) {
-				$h = $this->PageBreakTrigger - $y;
+			if (($y + $h) > $this->PageBreakTrigger + $this->bMargin) {
+				$h = $this->PageBreakTrigger + $this->bMargin - $y;
 				$w = ($h * $ratio_wh);
 			}
 			if ((!$this->rtl) AND (($x + $w) > ($this->w - $this->rMargin))) {
