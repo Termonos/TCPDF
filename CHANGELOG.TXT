@@ -4,6 +4,7 @@
 	- Fix bad text-align from HTML source - PR #833
 	- Fix image on footer problems - PR #823
 	- Preserving percentage gradient decimals and correctly clamp coordinates - PR #815
+	- Enables compression for PDF/A - PR #820
 
 6.10.0 (2025-05-27)
 	- Embedded files support (Factur-X 1.07 / ZUGFeRD 2.3) #789
