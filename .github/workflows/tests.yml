@@ -36,7 +36,7 @@ jobs:
         env:
             PDFINFO_BINARY: ${{ (matrix.os == 'ubuntu-latest') && '/usr/bin/pdfinfo' || ((matrix.os == 'macos-latest') && '/usr/local/bin/pdfinfo' || 'C:\ProgramData\Chocolatey\bin\pdfinfo.exe') }}
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v5
             - name: Install pdfinfo, pdftopng or pdftoppm
               uses: ConorMacBride/install-package@v1
               with:
@@ -90,7 +90,7 @@ jobs:
             # For debugging issues
             - name: Archive test results
               if: failure()
-              uses: actions/upload-artifact@v4
+              uses: actions/upload-artifact@v5
               with:
                 name: test-run-output-${{ matrix.php-version }}-${{ matrix.os }}
                 retention-days: 1
@@ -100,7 +100,7 @@ jobs:
         name: Static Analysis
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v5
             - name: Use php 8.2
               uses: shivammathur/setup-php@v2
               with:
