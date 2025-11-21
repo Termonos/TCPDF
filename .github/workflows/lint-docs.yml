@@ -17,7 +17,7 @@ jobs:
         steps:
             - uses: actions/checkout@v5
             - name: lint php documentation
-              uses: sudo-bot/action-doctum@dev
+              uses: sudo-bot/action-doctum@v5
               with:
                   config-file: scripts/doctum.php
                   method: "parse"
