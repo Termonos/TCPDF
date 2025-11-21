@@ -16918,7 +16918,7 @@ class TCPDF {
 							$dom[$key]['height'] = $dom[$key]['style']['height'];
 						}
 						// check for text alignment
-						if (isset($dom[$key]['style']['text-align'])) {
+						if (isset($dom[$key]['style']['text-align'][0])) {
 							$dom[$key]['align'] = strtoupper($dom[$key]['style']['text-align'][0]);
 						}
 						// check for CSS border properties
