@@ -1851,7 +1851,7 @@ class TCPDF_STATIC {
 			return false;
 		}
 
-		[, $code,] = explode(' ', $http_response_header[0]);
+		[, $code,] = explode(' ', http_get_last_response_headers()[0]);
 
 		return ((int) $code == 200);
 	}
